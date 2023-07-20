@@ -1,0 +1,17 @@
+Day 1: Basic JavaScript
+- Complied + Interpreted ==> (--Hoisting--)
+- case sensetive: myName , MyName.
+- semicolons are optional
+- declaring identifiers: 
+    + string, alphanumeric
+    + can't start with number
+    + 3 vars in 1 declaration is not allow
+    + $ and _ can be used as special chars
+    + it is untyped language. can assign any data type and change later on. it is dynamic casting enabled or auto casting.
+        ex: var number = true; 
+        number = 1000;
+- 6 data types: String, Number, Boolean, Undifined, Null, Object (Symbol as data in ES6)
+    + null is valid data but datatype of null is Object.
+    +{} is json object or object.
+- Operators: &&, ||, !, =, == (only compare data not type), ===(only compare data and type), <, > >=, <=, ++
+
