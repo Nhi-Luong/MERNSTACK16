@@ -15,3 +15,6 @@ Day 1: Basic JavaScript
     +{} is json object or object.
 - Operators: &&, ||, !, =, == (only compare data not type), ===(only compare data and type), <, > >=, <=, ++
 
+Day 2: Function
+- name function: function PrintSum(a,b){return a+b;}
+- function expression: var DoSum = function Func(a,b){return a+b}

@@ -12,3 +12,12 @@ var age = 18
 var isValidId = true 
 
 isValidId && age == 18 ? console.log("valid voter") : console.log("invalid voter")
+
+//var hoisting: 
+console.log(a) //return ;
+var a=10; 
+//function hoisting
+console.log(sum(10,5)); //return 15
+function sum(a,b){
+return a+b;
+}
