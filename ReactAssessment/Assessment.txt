@@ -1,0 +1,55 @@
+//1. what is react and its role for single page application
+react is a part of JS library. it provides components base architecture - each component represents a piece of UI container(EX: HomeComponent, FooterComponent).
+Then we can compose them to become a complete UI. React also uses Virtual DOM to update the UI(it will compares to the previous version and then only render when data changes).
+For that, react plays a crural role for building a SPA . It not only build up a dynamic UI update but also minimize DOM manipulation. Moreover, it provides state management
+to manage data between the components and pages.
+
+//2. how react is faster compared to other javascript frameworks
+because react only generates HTML (without unnecessary spaces) on the server and send to the client when it runs.
+React also uses virtual DOM, reusable components, state management.  
+
+//3. what is virtual dom
+Virtual DOM is use to manange and updates the actual DOM when data changes in React Apllication
+
+//4. how react renders dom in conservative manner
+React will compare the current DOM with the previous version (copy the old version then make comparison) to find out something differences in the application state and props.
+Then the application only render the changes.
+
+//5. create a class component named - Success and show some quotes on success in its
+- npm init
+- npm i express
+- npm i nodemon 
+- add dependencies and .babelrc files then run "npm i"
+- create src package and index.htm index.js
+- add webpack.config.js then run "npm run build" --> to build index.bundle.js
+- install react and react-dom: npm i react react-dom
+- Then implement success.js with placing some simple data in render session. 
+
+//6. create a functional component SuccessChild, make it child of Success and pass Name and Address to it from Success
+- create Component Package then implement successChild.js
+- to make it become success child, we need import successChild's component to success.js
+- then bind and pass the values like : <ChildSuccess name={"Nhi Luong"} address={"USA"}/>
+- after that, we can access the value from parent application throught the props. 
+
+//7. create SuccessStory as another component, pass this as props in SuccessChild from Success component
+- create successStory.js
+- like successChild, we need export successStory to success.
+- Because we can't bind the child component directly under another child component
+- so we need to create a function renderSuccessStory() to attach successStory component
+- then pass it like one part of props <ChildSuccess renderSuccess = {this.renderSuccessStory}>
+
+//8. create UserSignIn component using uncontrolled way, should be class component
+- create UserSignIn.js
+- we need use React.createRef() to implement the uncontrolled way form. 
+- then bind ref={this.userNameRef} in the input type of the form.
+- after that write a function to get the values from ref using let "userName = this.userNameRef.current.value;"
+
+//9. create Product component to accept ProductName and ProductPrice
+
+//10. pass a random value from SuccessStory component back to Success
+- to pass the data from child to parent, we need a call back function. 
+- in success.js create getDataFromChild=(data) with the param is a data from successStory.js.
+- the method will get the date and make some changes on the parent's state.
+- to access the method from child side, we need bind it to the props <StorySuccess callBackFunc={this.getDataFromChild}/>
+- after that to send back the random data from the child component we will use props.callBackFunc(randomValue)
+
