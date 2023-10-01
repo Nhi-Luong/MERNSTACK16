@@ -1,0 +1,75 @@
+create folder react-app: store front-end stuff using react, redux
+    - npm init -> package.json
+    - nmp i express -> package-lock.json and node_modules folder
+    - copy dependencies into package.json and create .babelrc then run npm i
+    - copy webpack.config.js
+    - create src folder with index.html and index.js
+    - execute npm run build -> dist folder
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+UI Stuff - React:
+    - create application folder with app.js 
+    - add many components (HeaderComponent, FooterComponent, etc...) as needed than import application to index.js
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+Redux:
+    - create state folder state with store.js which will get all the reducers combined as one state and do the job broadcasting
+    - create actionTypes.js this file do the job as same as service interface. The actions will be managed here. 
+    - create UserReducer.js - This reducer is designed to handle actions related to user data in a Redux store.
+    - after that add userReducer and other reducers to store. REMEMBER: only one reducer is accepted so we need combines all reducers under rootReducer.
+    - make store become the top level in index.js using Provider middleware, now store is ready to use
+    - UserAction.js is known as service implemenetation. where the methods are defined.
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+Subscriptor and publisher:
+    - when a class wants to take information from store - subscriptor, it needs:
+        + import { connect } from "react-redux"
+        + import what actions it needs: import { AddUserToStore } from "../../../state/User/UserAction";
+        + this function will access store to get User from userReducer.
+        let mapstateToProps = (store) =>{
+            return{
+                User : store.userReducer.User
+            }
+        }
+        + On the another hand, when a class want to write something to store - publisher, instead of using mapStateToProps, it needs implement:
+        let mapDispatchToProps = (dispatch)=>{
+            return{
+                AddUser : (newUser)=>{
+                dispatch(AddUserToStore(newUser))
+                }
+            }
+        }
+        + final it need export all of its essential parts: export default connect(mapstateToProps, mapDispatchToProps)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+Detail components:
+    - UserComponent.js : 
+        +html form
+        +implements method onTextChange with event as parameter(evt): it targets to all the input form with "onChange={this.onTextChange}",
+        then it will set state with all the values from inputs: 
+        if(classList.contains("username")){
+            this.setState({
+                userName : value
+            })}
+        + then loginUser method will perform an AddUser (or dispatch(AddUserToStore(newUser)))
+    - ProductHook.js :
+        + mostly same as UserComponent
+        + but, this is functional component which can't directly subcribe from the redux store.
+        + So that, it needs some additional library from react-reduct to get the data from store (useSelector, useDispatch) 
+        
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+create folder node-seerver: use for server side and database connection.
+    - npm init -> package.json
+    - nmp i express -> package-lock.json and node_modules folder
+    - add other dependencies: npm i mongoose cors 
+    - create server.js to store all the desired apis
+    - then router is used to managed the routes. 
+    - create connection to database. example:
+        let mongooseObj = require("mongoose");
+        schemaObj = mongooseObj.Schema; 
+        mongooseObj.connect("mongodb://localhost:27017/assessment4"); 
+        let userSchema = new schemaObj({
+            userName : {type: String, required : true},
+            password: {type:String, required : true},
+            street: String,
+            mobile: String
+        });
+        let UserModel = mongooseObj.model("user",userSchema);
+        module.exports = UserModel;
